@@ -19,6 +19,9 @@ public class MyArrayList<T> {
     }
 
     public T get(int index) {
+        if(!indexValidation(index)){
+            return null;
+        }
         return (T) objects[index];
     }
 
@@ -27,6 +30,9 @@ public class MyArrayList<T> {
     }
 
     public void remove(int index) {
+        if(!indexValidation(index)){
+            return;
+        }
         if (size == 0) {
             return;
         } else if (size > 1) {
@@ -40,5 +46,14 @@ public class MyArrayList<T> {
             size = 0;
         }
     }
-
+    public boolean indexValidation(int index){
+        if(index > size){
+            return false;
+        } else if (index < 0) {
+            return false;
+        }
+        return true;
+    }
 }
+
+

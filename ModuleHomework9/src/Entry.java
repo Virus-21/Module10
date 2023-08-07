@@ -33,4 +33,9 @@ public class Entry<K, V> {
     public void setNext(Entry<K, V> next) {
         this.next = next;
     }
+    public Entry copyOfEntry(){
+        return new Entry(this.key,this.value,this.next);
+    }
+
+
 }

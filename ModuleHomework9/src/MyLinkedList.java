@@ -21,6 +21,9 @@ public class MyLinkedList<T> {
     }
 
     public T get(int index) {
+        if(!indexValidation(index)){
+            return null;
+        }
         Node<T> currentNode = firstNode;
         if (index == 0) {
             return currentNode.getValue();
@@ -33,9 +36,10 @@ public class MyLinkedList<T> {
     }
 
     public void remove(int index) {
-        if (index > size) {
+        if(indexValidation(index) == false){
             return;
-        } else if (index == size - 1) {
+        }
+        if (index == size - 1) {
             lastNode = lastNode.getPrevNode();
             lastNode.setNextNode(null);
             System.out.println("hhhh");
@@ -61,5 +65,13 @@ public class MyLinkedList<T> {
         firstNode = null;
         lastNode = null;
         size = 0;
+    }
+    public boolean indexValidation(int index){
+        if(index > size){
+            return false;
+        } else if (index < 0) {
+            return false;
+        }
+        return true;
     }
 }

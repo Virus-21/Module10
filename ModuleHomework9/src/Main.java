@@ -7,7 +7,7 @@ public class Main {
         MyHashMap<String, Integer> myHashMap = new MyHashMap<>();
         MyLinkedList<String> myLinkedList = new MyLinkedList<>();
         MyStack<Integer> myStack = new MyStack<>();
-        //myHashMapTest(myHashMap);
+        myHashMapTest(myHashMap);
         //myQueueTest(myQueue);
         //myArrayListTest(myArrayList);
         //myLinkedListTest(myLinkedList);
@@ -40,14 +40,40 @@ public class Main {
     }
 
     public static void myHashMapTest(MyHashMap myHashMap) {
-        myHashMap.put("Myron", 19);
-        myHashMap.put("Igor", 17);
-        myHashMap.put("Katya", 21);
-        System.out.println("myHashMap.get(\"Igor\") = " + myHashMap.get("Igor"));
-        myHashMap.remove("Myron");
-        System.out.println("myHashMap.size() = " + myHashMap.size());
-        myHashMap.clear();
-        System.out.println("myHashMap.get(\"Katya\") = " + myHashMap.get("Katya"));
+//        myHashMap.put("Myron", 19);
+//        myHashMap.put("Igor", 17);
+//        myHashMap.put("Katya", 21);
+//        System.out.println("myHashMap.get(\"Igor\") = " + myHashMap.get("Igor"));
+//        myHashMap.remove("Myron");
+//        System.out.println("myHashMap.size() = " + myHashMap.size());
+//        myHashMap.clear();
+//        System.out.println("myHashMap.get(\"Katya\") = " + myHashMap.get("Katya"));
+
+        myHashMap.put("p1", 19);
+        myHashMap.put("p2", 17);
+        myHashMap.put("p3", 21);
+        myHashMap.put("p4", 19);
+        myHashMap.put("p5", 17);
+        myHashMap.put("p6", 21);
+        myHashMap.put("p7", 19);
+        myHashMap.put("p8", 17);
+        myHashMap.put("p9", 21);
+        myHashMap.put("p10", 19);
+        myHashMap.put("p11", 17);
+        myHashMap.put("p12", 21);
+        myHashMap.put("p13", 19);
+        myHashMap.put("p14", 17);
+        myHashMap.put("p15", 21);
+        myHashMap.put("p16", 19);
+        myHashMap.put("p18", 17);
+        myHashMap.put("p19", 21);
+        System.out.println("myHashMap.get(\"p15\") = " + myHashMap.get("p15"));
+        System.out.println("myHashMap.get(p1) = " + myHashMap.get("p1"));
+        System.out.println("myHashMap.get(\"p14\") = " + myHashMap.get("p14"));
+        System.out.println("myHashMap.get(\"p16\") = " + myHashMap.get("p16"));
+        System.out.println("myHashMap.get(\"p10\") = " + myHashMap.get("p10"));
+        System.out.println("myHashMap.get(\"p12\") = " + myHashMap.get("p12"));
+
     }
 
     public static void myLinkedListTest(MyLinkedList myLinkedList) {

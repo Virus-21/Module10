@@ -1,6 +1,9 @@
+import java.util.SortedMap;
+
 public class MyHashMap<K, V> {
 
     private static final int DEFAULT_CAPACITY = 16;
+    private int capacity = DEFAULT_CAPACITY;
     private int size = 0;
     private Entry<K, V>[] table;
 
@@ -10,24 +13,13 @@ public class MyHashMap<K, V> {
 
 
     public void put(K key, V value) {
+
         int index = index(key);
-        Entry newEntry = new Entry(key, value, null);
-        if (table[index] == null) {
-            table[index] = newEntry;
-        } else {
-            Entry<K, V> previousNode = null;
-            Entry<K, V> currentNode = table[index];
-            while (currentNode != null) {
-                if (currentNode.getKey().equals(key)) {
-                    currentNode.setValue(value);
-                    break;
-                }
-                previousNode = currentNode;
-                currentNode = currentNode.getNext();
-            }
-            if (previousNode != null)
-                previousNode.setNext(newEntry);
+
+        if (capacity == size) {
+            increaseCapacityOfTable();
         }
+        addEntryToTable(key, value);
         size++;
     }
 
@@ -35,10 +27,14 @@ public class MyHashMap<K, V> {
         V value = null;
         int index = index(key);
         Entry<K, V> entry = table[index];
+
         while (entry != null) {
             if (entry.getKey().equals(key)) {
                 value = entry.getValue();
+
                 break;
+            } else {
+
             }
             entry = entry.getNext();
         }
@@ -46,9 +42,11 @@ public class MyHashMap<K, V> {
     }
 
     public void remove(K key) {
+
         int index = index(key);
         Entry previous = null;
         Entry entry = table[index];
+
         while (entry != null) {
             if (entry.getKey().equals(key)) {
                 if (previous == null) {
@@ -74,7 +72,7 @@ public class MyHashMap<K, V> {
         if (key == null) {
             return 0;
         }
-        return Math.abs(key.hashCode() % DEFAULT_CAPACITY);
+        return key.hashCode() % capacity;
     }
 
     public int size() {
@@ -85,5 +83,46 @@ public class MyHashMap<K, V> {
         size = 0;
         table = new Entry[DEFAULT_CAPACITY];
 
+    }
+
+    public void increaseCapacityOfTable() {
+        int tableLenght = table.length;
+        capacity = capacity * 2;
+        Entry<K, V>[] newTable = new Entry[capacity * 2];
+        Entry<K, V>[] copyOfTable = table;
+        table = newTable;
+
+        for (int i = 0; i < tableLenght; i++) {
+            Entry entry = copyOfTable[i];
+            while (entry != null) {
+                addEntryToTable((K) entry.getKey(), (V) entry.getValue());
+                entry = entry.getNext();
+            }
+
+        }
+
+    }
+
+    public void addEntryToTable(K key, V value) {
+
+        int index = index(key);
+
+        Entry newEntry = new Entry(key, value, null);
+        if (table[index] == null) {
+            table[index] = newEntry;
+        } else {
+            Entry<K, V> previousNode = null;
+            Entry<K, V> currentNode = table[index];
+            while (currentNode != null) {
+                if (currentNode.getKey().equals(key)) {
+                    currentNode.setValue(value);
+                    break;
+                }
+                previousNode = currentNode;
+                currentNode = currentNode.getNext();
+            }
+            if (previousNode != null)
+                previousNode.setNext(newEntry);
+        }
     }
 }
